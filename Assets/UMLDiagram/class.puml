@@ -1,0 +1,144 @@
+@startuml class
+    interface ISpeechRecognizerCallbacksAcceptable {
+        speechRecognitionDidDetectSpeech ()
+        speechRecognitionDidHypothesizeTranscription (string transcription)
+        speechRecognitionDidFinishRecognition (string result)
+        speechRecognitionDidFinishSuccessfully ()
+        speechRecognitionDidFinishWithError ()
+        SpeechRecognizerOnAuthorized ()
+        SpeechRecognizerOnUnauthorized (string description)
+        SpeechRecognizerOnAvailable ()
+        SpeechRecognizerOnUnavailable ()
+        SpeechRecognizerDebugInfo (string description)
+    }
+
+package SpeechRecognizer {
+
+
+
+    class SpeechRecognizerStub <<static>> {
+        + RequestRecognizerAuthorization()
+        + StartRecord()
+        + StopRecord()
+        + CallbackGameobjectName: string
+    }
+
+    class SpeechRecognizer <<swift>>{
+    }
+    SpeechRecognizerStub --> SpeechRecognizer : call
+    SpeechRecognizer --> ISpeechRecognizerCallbacksAcceptable : return results and progress degree
+
+}
+
+    interface ISpeechSynthesizerCallbacksAcceptable {
+        SpeechSynthesizerDidFinishSpeech ();
+        SpeechSynthesizerDebugInfo (string description);
+    }
+package SpeechSytnthesizer{
+
+
+
+    class SpeechSynthesizerStub <<static>> {
+        + Speak()
+        + CallbackGameobjectName: string
+    }
+
+    class SpeechSynthesizer <<swift>>{
+    }
+
+    SpeechSynthesizerStub --> SpeechSynthesizer : call
+    SpeechSynthesizer --> ISpeechSynthesizerCallbacksAcceptable : inform the end of the conversation
+}
+
+
+HumanAgent ..|> ISpeechRecognizerCallbacksAcceptable
+HumanAgent ..|> ISpeechSynthesizerCallbacksAcceptable
+
+class HumanAgent{
+    + hasUnderstood: bool
+    + isSpeaking: bool
+    + statemachine: StateMachine
+    + timekeepManager: SpeechRecognizerTimeKeeper
+
+    + startConversation()
+    + willBeTold()
+}
+
+HumanAgent --> StateMachine
+HumanAgent --> SpeechRecognizerStub
+HumanAgent --> SpeechSynthesizerStub
+SpeechRecognizerTimeKeeper --* HumanAgent
+
+SpeechRecognizerTimeKeeper --> SpeechRecognizerStub : stop record
+
+class SpeechRecognizerTimeKeeper{
+    + update()
+    + start()
+    + stop()
+}
+
+class GameScene {
+    + humanAgent: HumanAgent
+    + isLoaded: bool
+    + instance: GameScene
+
+    + OnSceneWasLoaded()
+    + toMenuScene()
+    + retryGameScene()
+    + destroyScene()
+}
+
+GameScene --> StateMachine : Initialize
+
+class StateMachine {
+    + state: State
+    + initializer(): StateMachine
+    + start(): bool
+    + handle(): bool
+}
+
+class State{
+    + id: int
+    + accept: boolean
+    + responce: string
+    + nextTransitions: IEnumerable<JToken>
+    + nextTriggers: IEnumerable<JToken>
+}
+
+
+State "1"--*"1" StateMachine
+
+
+
+
+HumanAgent --* GameScene
+StateMachine --* HumanAgent
+
+package View{
+
+    class DebugUIController{
+        + startRecognition()
+        + stopRecognitoion()
+    }
+    DebugUIController --> SpeechRecognizerStub
+
+    class NextStateButtonController{
+        + forceChangeState()
+    }
+    NextStateButtonController --> StateMachine
+
+    class PauseButtonController{
+        + retire()
+    }
+    PauseButtonController --> GameScene : toMenuScene
+
+    class CustomerResponseController{
+
+    }
+    class UpperPanelController{
+
+    }
+
+}
+
+@enduml

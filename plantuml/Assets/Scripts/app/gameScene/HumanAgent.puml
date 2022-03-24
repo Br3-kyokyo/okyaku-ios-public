@@ -1,0 +1,15 @@
+@startuml
+class HumanAgent {
+    start() : void
+    + input(recognized:string) : void
+    + stopHeard() : void
+    + startHeard() : void
+    + speak(text:string) : void
+    + afterFinishSpeak() : void
+    + afterDetectSpeech() : void
+}
+MonoBehaviour <|-- HumanAgent
+HumanAgent --> "gameScene" GameScene
+HumanAgent --> "statemachine" StateMachine
+HumanAgent --> "timekeeper" SpeechRecognizerTimeKeeper
+@enduml

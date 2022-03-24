@@ -1,0 +1,6 @@
+@startuml
+interface ISceneWasLoaded {
+    OnSceneWasLoaded(argument:object) : void
+}
+IEventSystemHandler <|-- ISceneWasLoaded
+@enduml

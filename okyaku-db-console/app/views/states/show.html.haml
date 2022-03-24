@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @state.name
+%p
+  %b Is init:
+  = @state.is_init
+%p
+  %b Is accept:
+  = @state.is_accept
+
+= link_to 'Edit', edit_state_machine_state_path(@state)
+\|
+= link_to 'Back', states_path

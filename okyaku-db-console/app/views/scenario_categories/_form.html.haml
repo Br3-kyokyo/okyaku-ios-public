@@ -1,0 +1,14 @@
+= form_for @scenario_category do |f|
+  - if @scenario_category.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@scenario_category.errors.count, "error")} prohibited this scenario_category from being saved:"
+      %ul
+        - @scenario_category.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :info
+    = f.text_field :info
+
+  .actions
+    = f.submit 'Save'

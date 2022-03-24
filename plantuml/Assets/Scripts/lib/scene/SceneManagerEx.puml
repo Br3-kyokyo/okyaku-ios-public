@@ -1,0 +1,5 @@
+@startuml
+class SceneManagerEx <<static>> {
+    {static} + LoadSceneWithArg(sceneName:string, argument:object, mode:LoadSceneMode) : void
+}
+@enduml

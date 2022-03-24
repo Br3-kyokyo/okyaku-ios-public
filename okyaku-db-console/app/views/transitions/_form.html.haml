@@ -1,0 +1,30 @@
+= form_for shallow_args(@state_machine, @transition) do |f|
+  - if @transition.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@transition.errors.count, "error")} prohibited this transition from being saved:"
+      %ul
+        - @transition.errors.full_messages.each do |message|
+          %li= message
+          
+  %h2 Transition設定
+  #transition_form
+    = f.label             :name
+    = f.text_field        :name, placeholder: 'optional'
+    = f.hidden_field      :state_machine_id,  value: @state_machine.id
+    = f.label             :prev_state_id
+    = f.collection_select :prev_state_id,   @state_machine.states, :id, :name
+    = f.label             :next_state_id
+    = f.collection_select :next_state_id,   @state_machine.states, :id, :name    
+
+  %h2 Action設定
+  #action_form
+    = f.fields_for :customer_action do |action_f|
+      = render 'customer_action_fields', f: action_f
+
+  %h2 Trigger設定
+  #trigger_form
+    = f.fields_for :trigger do |trigger_f|
+      = render 'trigger_fields', f: trigger_f
+
+  .actions
+    = f.submit 'Save'

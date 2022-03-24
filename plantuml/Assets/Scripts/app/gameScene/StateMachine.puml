@@ -1,0 +1,17 @@
+@startuml
+class StateMachine {
+    + stateId : int <<get>>
+    + isAccepted : bool <<get>> = false
+    + isMatched : bool <<get>> = false
+    + reciptWrongAnswer : bool <<get>> = false
+    + initializer(stateMachineFile:TextAsset) : void
+    + handle(transition_id:int) : bool
+    + handle(result:RecognitionResult) : bool
+}
+class "IEnumerable`1"<T> {
+}
+MonoBehaviour <|-- StateMachine
+StateMachine --> "statemachine" JObject
+StateMachine --> "nextTransitions<JToken>" "IEnumerable`1"
+StateMachine --> "nextTriggers<JToken>" "IEnumerable`1"
+@enduml

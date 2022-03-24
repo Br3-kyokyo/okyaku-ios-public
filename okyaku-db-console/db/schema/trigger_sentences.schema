@@ -1,0 +1,11 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "trigger_sentences", force: :cascade do |t|
+  t.string "body_en"
+  t.string "body_ja"
+  t.integer "trigger_id", null: false
+  t.integer "position", null: false
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.index ["trigger_id"], name: "index_trigger_sentences_on_trigger_id"
+end

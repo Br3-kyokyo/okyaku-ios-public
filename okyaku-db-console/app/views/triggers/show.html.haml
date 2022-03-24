@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @trigger.name
+%p
+  %b Transition:
+  = @trigger.transition
+
+= link_to 'Edit', edit_transition_trigger_path(@transition)
+
+= link_to 'Back', transition_path(@transition)

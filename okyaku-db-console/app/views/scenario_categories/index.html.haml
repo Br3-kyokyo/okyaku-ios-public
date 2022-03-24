@@ -1,0 +1,22 @@
+%h1 Listing scenario_categories
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+      %th
+
+
+  %tbody
+    - @scenario_categories.each do |scenario_category|
+      %tr
+        %td= scenario_category.info
+        %td= link_to 'Show', scenario_category
+        %td= link_to 'Edit', edit_scenario_category_path(scenario_category)
+        %td= link_to 'Destroy', scenario_category, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Scenario category', new_scenario_category_path

@@ -1,0 +1,11 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "customer_actions", force: :cascade do |t|
+  t.string "name"
+  t.integer "transition_id", null: false
+  t.string "text_en"
+  t.string "text_ja"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.index ["transition_id"], name: "index_customer_actions_on_transition_id", unique: true
+end

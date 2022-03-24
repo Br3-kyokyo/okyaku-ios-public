@@ -1,0 +1,13 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "transitions", force: :cascade do |t|
+  t.string "name"
+  t.integer "state_machine_id", null: false
+  t.integer "prev_state_id", null: false
+  t.integer "next_state_id", null: false
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.index ["next_state_id"], name: "index_transitions_on_next_state_id"
+  t.index ["prev_state_id"], name: "index_transitions_on_prev_state_id"
+  t.index ["state_machine_id"], name: "index_transitions_on_state_machine_id"
+end

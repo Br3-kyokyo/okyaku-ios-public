@@ -1,0 +1,27 @@
+%h1 Listing trigger_sentences
+
+%table
+  %thead
+    %tr
+      %th Body en
+      %th Body ja
+      %th Trigger
+      %th Position
+      %th
+      %th
+      %th
+
+  %tbody
+    - @trigger_sentences.each do |trigger_sentence|
+      %tr
+        %td= trigger_sentence.body_en
+        %td= trigger_sentence.body_ja
+        %td= trigger_sentence.trigger
+        %td= trigger_sentence.position
+        %td= link_to 'Show', trigger_sentence
+        %td= link_to 'Edit', edit_trigger_sentence_path(trigger_sentence)
+        %td= link_to 'Destroy', trigger_sentence, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Trigger sentence', new_trigger_sentence_path

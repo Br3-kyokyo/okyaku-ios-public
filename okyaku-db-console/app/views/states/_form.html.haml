@@ -1,0 +1,20 @@
+= form_for shallow_args(@state_machine, @state) do |f|
+  - if @state.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@state.errors.count, "error")} prohibited this state from being saved:"
+      %ul
+        - @state.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :is_init
+    = f.check_box :is_init
+  .field
+    = f.label :is_accept
+    = f.check_box :is_accept
+    = f.hidden_field :state_machine_id, value: @state_machine.id
+  .actions
+    = f.submit 'Save'

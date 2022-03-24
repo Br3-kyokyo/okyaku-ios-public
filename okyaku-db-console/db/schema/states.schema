@@ -1,0 +1,11 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "states", force: :cascade do |t|
+  t.string "name"
+  t.boolean "is_init", default: false
+  t.boolean "is_accept", default: false
+  t.integer "state_machine_id", null: false
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.index ["state_machine_id"], name: "index_states_on_state_machine_id"
+end

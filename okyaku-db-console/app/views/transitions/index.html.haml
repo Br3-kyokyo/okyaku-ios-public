@@ -1,0 +1,23 @@
+%h1
+  = "Listing transitions @ #{@state_machine.name}"
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @transitions.each do |transition|
+      %tr
+        %td= transition.name
+        %td= link_to 'Show', state_machine_transition_path(@state_machine, transition)
+        %td= link_to 'Edit', edit_state_machine_transition_path(@state_machine, transition)
+        %td= link_to 'Destroy', state_machine_transition_path(@state_machine, transition), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Transition', new_state_machine_transition_path
+= link_to 'back', state_machine_path(@state_machine)

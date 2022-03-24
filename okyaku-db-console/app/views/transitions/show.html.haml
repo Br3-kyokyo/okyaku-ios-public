@@ -1,0 +1,46 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @transition.name
+%p
+  %b prev_state:
+  = @transition.prev_state.name
+%p
+  %b next_state:
+  = @transition.next_state.name
+
+= link_to 'Edit', edit_transition_path(@transition)
+
+%h1 CustomerAction
+
+- if @action.present?
+  %p
+    %b 英語:
+    = @action.text_en
+  %p
+    %b 和訳:
+    = @action.text_ja
+  = link_to 'Edit', edit_transition_customer_action_path(@transition)
+  = link_to 'Destroy', transition_customer_action_path(@transition), method: :delete, data: { confirm: 'Are you sure?' }
+
+- else
+  = link_to '作成', new_transition_customer_action_path(@transition)
+  
+%h1 Trigger
+- if @trigger.present?
+  %p
+    %b 英語:
+    - @trigger.sentences.each do |sentence|
+      = sentence.body_en
+  %p
+    %b 和訳:
+    - @trigger.sentences.each do |sentence|
+      = sentence.body_ja
+  = link_to 'Edit', edit_transition_trigger_path(@transition)
+  = link_to 'Destroy', transition_trigger_path(@transition), method: :delete, data: { confirm: 'Are you sure?' }
+- else  
+  = link_to '作成', new_transition_trigger_path(@transition)
+
+%h2
+  = link_to 'Back', state_machine_path(@state_machine)

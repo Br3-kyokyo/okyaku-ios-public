@@ -1,0 +1,26 @@
+%p#notice= notice
+
+%h1 カテゴリ名
+%p
+    = @scenario_category.info
+
+= link_to 'Edit', edit_scenario_category_path(@scenario_category)
+\|
+= link_to 'Back', scenario_categories_path
+
+%h1 シナリオ一覧
+%table
+    %thead
+        %tr
+            %th ポジション
+            %th タイトル
+            %th{ colspan: "2"}
+    %tbody
+        - @state_machines.each do |state_machine|
+            %tr
+                %td= state_machine&.position
+                %td= state_machine.name
+                %td= link_to 'Show', state_machine
+                %td= link_to 'Destroy', state_machine, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New State Machine', new_state_machine_path

@@ -1,0 +1,6 @@
+@startuml
+class SpeechSynthesizerStub <<static>> {
+    + {static} Speak(text:string) : void
+    + {static} CallbackGameObjectName : string <<set>>
+}
+@enduml

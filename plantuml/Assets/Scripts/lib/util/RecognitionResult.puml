@@ -1,0 +1,7 @@
+@startuml
+class RecognitionResult {
+    + result : string <<get>>
+    + RecognitionResult(result:string)
+    + getKeywords() : Keywords
+}
+@enduml

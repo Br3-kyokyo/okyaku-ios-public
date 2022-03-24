@@ -1,0 +1,14 @@
+%h3 Keywords
+#keyword_form
+  = f.fields_for :keywords do |keyword_f|
+    = render 'keyword_fields', f: keyword_f
+#keyword_form_append_button
+  = link_to_add_association 'add sentence', f, :keywords, 'data-association-insertion-node': '#keyword_form', 'data-association-insertion-method': 'append'
+
+%h3 Sentence
+#sentence_form
+  = f.fields_for :sentences do |sentence_f|
+    = render 'sentence_fields', f: sentence_f
+#sentence_form_append_button
+  = link_to_add_association 'add sentence', f, :sentences, 'data-association-insertion-node': '#sentence_form', 'data-association-insertion-method': 'append'
+  

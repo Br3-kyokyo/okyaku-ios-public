@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Body en:
+  = @trigger_sentence.body_en
+%p
+  %b Body ja:
+  = @trigger_sentence.body_ja
+%p
+  %b Trigger:
+  = @trigger_sentence.trigger
+%p
+  %b Position:
+  = @trigger_sentence.position
+
+= link_to 'Edit', edit_trigger_sentence_path(@trigger_sentence)
+\|
+= link_to 'Back', trigger_sentences_path

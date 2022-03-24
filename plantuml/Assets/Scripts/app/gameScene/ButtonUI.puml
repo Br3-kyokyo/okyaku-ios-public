@@ -1,0 +1,10 @@
+@startuml
+class ButtonUI {
+    Start() : void
+    + forceChangeState(id:Text) : void
+    + startRecognition() : void
+    + stopRecognition() : void
+}
+MonoBehaviour <|-- ButtonUI
+ButtonUI --> "stateMachine" StateMachine
+@enduml

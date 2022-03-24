@@ -1,0 +1,7 @@
+@startuml
+class DebugLog {
+    Start() : void
+}
+MonoBehaviour <|-- DebugLog
+DebugLog --> "LogTextField" Text
+@enduml

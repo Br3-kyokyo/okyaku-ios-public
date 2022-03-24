@@ -1,0 +1,15 @@
+= form_for @trigger, url: transition_trigger_path(@transition) do |f|
+  - if @trigger.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@trigger.errors.count, "error")} prohibited this trigger from being saved:"
+      %ul
+        - @trigger.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .hidden
+    = f.hidden_field :transition_id, value: @transition.id
+  .actions
+    = f.submit 'Save'

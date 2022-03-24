@@ -1,0 +1,9 @@
+@startuml
+class SpeechSynthesizerCallbacksController {
+    Start() : void
+    + SpeechSynthesizerDidFinishSpeech() : void
+    + DebugInfo(description:string) : void
+}
+MonoBehaviour <|-- SpeechSynthesizerCallbacksController
+SpeechSynthesizerCallbacksController --> "Human" HumanAgent
+@enduml

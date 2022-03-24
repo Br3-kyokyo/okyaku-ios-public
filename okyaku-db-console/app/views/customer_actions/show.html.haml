@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @customer_action.name
+%p
+  %b Transition:
+  = @customer_action.transition
+%p
+  %b Text en:
+  = @customer_action.text_en
+%p
+  %b Text ja:
+  = @customer_action.text_ja
+
+= link_to 'Edit', edit_transition_customer_action_path(@transition)
+
+= link_to 'Back', transition_path(@transition)

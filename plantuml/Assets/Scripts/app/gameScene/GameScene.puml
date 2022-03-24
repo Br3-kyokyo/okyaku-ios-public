@@ -1,0 +1,16 @@
+@startuml
+class GameScene {
+    Start() : void
+    Update() : void
+    + OnSceneWasLoaded(conversationFile:object) : void
+    + toMenuScene() : void
+    + retryGameScene() : void
+}
+MonoBehaviour <|-- GameScene
+ISceneWasLoaded <|-- GameScene
+GameScene --> "conversationFile" TextAsset
+GameScene --> "stateMachine" StateMachine
+GameScene --> "resultUI" GameObject
+GameScene --> "customerResponseUI" Text
+GameScene --> "hintTextField" Text
+@enduml

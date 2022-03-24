@@ -1,0 +1,17 @@
+%p#notice= notice
+%h1 State Machines
+%table
+  %thead
+    %tr
+      %th カテゴリ
+      %th タイトル
+      %th{ colspan: "2"}
+  %tbody
+    - @state_machines.each do |state_machine|
+      %tr
+        %td= state_machine.scenario_category&.info
+        %td= state_machine.name
+        %td= link_to 'Show', state_machine
+        %td= link_to 'Destroy', state_machine, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New State Machine', new_state_machine_path

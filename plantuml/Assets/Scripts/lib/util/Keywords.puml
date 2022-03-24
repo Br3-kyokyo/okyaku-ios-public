@@ -1,0 +1,6 @@
+@startuml
+class Keywords {
+    + Keywords(keywords:string[])
+    + include(words:Keywords) : bool
+}
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class SwiftUnityCallbacks {
+    Start() : void
+    + speechRecognitionDidDetectSpeech() : void
+    + speechRecognitionDidHypothesizeTranscription(transcription:string) : void
+    + speechRecognitionDidFinishRecognition(result:string) : void
+    + speechRecognitionDidFinishSuccessfully() : void
+    + speechRecognitionDidFinishWithError() : void
+    + SpeechRecognizerOnError(description:string) : void
+    + SpeechRecognizerOnAuthorized() : void
+    + SpeechRecognizerOnUnauthorized(description:string) : void
+    + SpeechRecognizerOnAvailable() : void
+    + SpeechRecognizerOnUnavailable() : void
+    + SpeechSynthesizerDidFinishSpeech() : void
+    + DebugInfo(description:string) : void
+}
+MonoBehaviour <|-- SwiftUnityCallbacks
+SwiftUnityCallbacks --> "Human" HumanAgent
+@enduml

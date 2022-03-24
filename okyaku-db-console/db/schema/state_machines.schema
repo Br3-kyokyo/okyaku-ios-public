@@ -1,0 +1,11 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "state_machines", force: :cascade do |t|
+  t.string "name"
+  t.integer "scenario_category_id"
+  t.integer "position"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+
+  t.index ["scenario_category_id"], name: "index_state_machines_on_scenario_category_id"
+end

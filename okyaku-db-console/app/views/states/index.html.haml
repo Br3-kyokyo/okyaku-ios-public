@@ -1,0 +1,27 @@
+%h1
+  = "Listing states @ #{@state_machine.name}"
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Is init
+      %th Is accept
+      %th
+      %th
+      %th
+
+  %tbody
+    - @states.each do |state|
+      %tr
+        %td= state.name
+        %td= state.is_init
+        %td= state.is_accept
+        %td= link_to 'Show', state_machine_state_path(@state_machine, state)
+        %td= link_to 'Edit', edit_state_machine_state_path(@state_machine, state)
+        %td= link_to 'Destroy', state_machine_state_path(@state_machine, state), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New State', new_state_machine_state_path
+= link_to 'back', state_machine_path(@state_machine)

@@ -1,0 +1,10 @@
+.nested-fields
+  .field
+    = f.label        :position
+    = f.number_field :position
+    = f.label        :body_en
+    = f.text_field   :body_en
+    = f.label        :body_ja
+    = f.text_field   :body_ja
+  = link_to_remove_association "remove", f
+

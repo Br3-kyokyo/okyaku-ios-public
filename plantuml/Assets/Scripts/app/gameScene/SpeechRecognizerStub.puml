@@ -1,0 +1,8 @@
+@startuml
+class SpeechRecognizerStub <<static>> {
+    + {static} RequestRecognizerAuthorization() : void
+    + {static} StartRecord() : bool
+    + {static} StopRecord() : bool
+    + {static} CallbackGameObjectName : string <<set>>
+}
+@enduml

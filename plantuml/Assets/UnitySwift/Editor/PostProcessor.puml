@@ -1,0 +1,5 @@
+@startuml
+class PostProcessor <<static>> {
+    + {static} OnPostProcessBuild(buildTarget:BuildTarget, buildPath:string) : void
+}
+@enduml

@@ -1,0 +1,22 @@
+= form_for @trigger_sentence do |f|
+  - if @trigger_sentence.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@trigger_sentence.errors.count, "error")} prohibited this trigger_sentence from being saved:"
+      %ul
+        - @trigger_sentence.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :body_en
+    = f.text_field :body_en
+  .field
+    = f.label :body_ja
+    = f.text_field :body_ja
+  .field
+    = f.label :trigger
+    = f.text_field :trigger
+  .field
+    = f.label :position
+    = f.number_field :position
+  .actions
+    = f.submit 'Save'

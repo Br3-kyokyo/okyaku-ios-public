@@ -1,0 +1,12 @@
+@startuml
+class SpeechRecognizerTimeKeeper {
+    + isActive : bool <<get>> = false
+    Start() : void
+    Update() : void
+    + reset() : void
+    + on() : void
+    + off() : void
+}
+MonoBehaviour <|-- SpeechRecognizerTimeKeeper
+SpeechRecognizerTimeKeeper --> "human" HumanAgent
+@enduml

@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+require 'customer_actions.schema'
+require 'scenario_categories.schema'
+require 'state_machines.schema'
+require 'states.schema'
+require 'transitions.schema'
+require 'trigger_keywords.schema'
+require 'trigger_sentences.schema'
+require 'triggers.schema'
+
+add_foreign_key "customer_actions", "transitions"
+add_foreign_key "states", "state_machines"
+add_foreign_key "transitions", "state_machines"
+add_foreign_key "transitions", "states", column: "next_state_id"
+add_foreign_key "transitions", "states", column: "prev_state_id"
+add_foreign_key "trigger_keywords", "triggers"
+add_foreign_key "trigger_sentences", "triggers"
+add_foreign_key "triggers", "transitions"

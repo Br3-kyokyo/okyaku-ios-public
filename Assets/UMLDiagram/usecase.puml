@@ -1,0 +1,10 @@
+@startuml usecase
+    actor User
+    
+    rectangle okyaku-ios {
+        User -- (Agent) : 会話する
+        User -- (Setting) : 各種設定
+        
+        
+    }
+@enduml

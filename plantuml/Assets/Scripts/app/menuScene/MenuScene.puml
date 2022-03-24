@@ -1,0 +1,6 @@
+@startuml
+class MenuScene {
+    + onClickGameStartButton(conversationFile:TextAsset) : void
+}
+MonoBehaviour <|-- MenuScene
+@enduml

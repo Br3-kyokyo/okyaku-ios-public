@@ -1,0 +1,79 @@
+%p#notice= notice
+%h1
+  カテゴリ
+%p
+  = @state_machine.scenario_category&.info || 'null'
+%h1
+  タイトル
+%p
+  = @state_machine.name
+= link_to 'Edit', edit_state_machine_path(@state_machine)
+|
+= link_to 'Back', state_machines_path
+
+%h1
+  States一覧
+%table
+  %thead
+    %tr
+      %th id
+      %th name
+      %th init
+      %th accept
+      %th{ colspan: "2"}
+  %tbody
+    - @states.each do |state|
+      %tr
+        %td= state.id
+        %td= state.name
+        %td= '✔︎' if state.is_init?
+        %td= '✔︎' if state.is_accept?
+        %td= link_to 'edit', edit_state_path(state)
+        %td= link_to 'Destroy', state_path(state), method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'add', new_state_machine_state_path(@state_machine)
+
+%h1
+  Transitions一覧
+%table
+  %thead
+    %tr
+      %th id
+      %th name
+      %th from
+      %th to
+      %th trigger
+      %th trigger keywords
+      %th action
+      %th{ colspan: "2"}
+  %tbody
+    - @transitions.each do |transition|
+      %tr
+        %td= transition.id
+        %td= transition.name
+        %td= transition.prev_state.name
+        %td= transition.next_state.name
+        %td
+          %p
+            - transition&.trigger&.sentences&.each do |sentence|
+              = sentence.body_ja
+          %p
+            - transition&.trigger&.sentences&.each do |sentence|
+              = sentence.body_en
+        %td
+          %span
+            - transition&.trigger&.keywords&.each do |keyword|
+              = "#{keyword.word}, "
+        %td
+          %p
+            = transition&.customer_action&.text_ja
+          %p
+            = transition&.customer_action&.text_en
+        %td= link_to 'setting', edit_transition_path(transition)
+        %td= link_to 'Destroy', transition_path(transition), method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'add', new_state_machine_transition_path(@state_machine)
+
+%h1
+  その他
+= link_to '戻る', state_machines_path
